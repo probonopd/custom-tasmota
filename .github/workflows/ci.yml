@@ -34,8 +34,8 @@ jobs:
         platformio run -e tasmota-minimal
         find ./build_output
         mkdir -p ./out
-        mv ./build_output/firmware/tasmota-minimal.bin.gz out/
-        mv ./build_output/firmware/tasmota-minimal.bin out/
+        mv ./build_output/firmware/tasmota-minimal.bin.gz out/tasmota-minimal-$(git rev-parse --short HEAD).bin.gz
+        mv ./build_output/firmware/tasmota-minimal.bin out/tasmota-minimal-$(git rev-parse --short HEAD).bin
     - name: Customize Tasmota
       run: |
         cat > tasmota/user_config_override.h <<\EOF
@@ -50,8 +50,8 @@ jobs:
         platformio run -e tasmota
         find ./build_output
         mkdir -p ./out
-        mv ./build_output/firmware/tasmota.bin.gz out/tasmota-advertise-ping.bin.gz
-        mv ./build_output/firmware/tasmota.bin out/tasmota-advertise-ping.bin
+        mv ./build_output/firmware/tasmota.bin.gz out/tasmota-advertise-ping-$(git rev-parse --short HEAD).bin.gz
+        mv ./build_output/firmware/tasmota.bin out/tasmota-advertise-ping-$(git rev-parse --short HEAD).bin
     - name: Customize Tasmota for SK6812
       run: |
         cat > tasmota/user_config_override.h <<\EOF
@@ -68,8 +68,8 @@ jobs:
         platformio run -e tasmota
         find ./build_output
         mkdir -p ./out
-        mv ./build_output/firmware/tasmota.bin.gz out/tasmota-sk6812-advertise-ping.bin.gz
-        mv ./build_output/firmware/tasmota.bin out/tasmota-sk6812-advertise-ping.bin
+        mv ./build_output/firmware/tasmota.bin.gz out/tasmota-sk6812-advertise-ping-$(git rev-parse --short HEAD).bin.gz
+        mv ./build_output/firmware/tasmota.bin out/tasmota-sk6812-advertise-ping-$(git rev-parse --short HEAD).bin
     - uses: actions/upload-artifact@v2
       with:
         name: tasmota
