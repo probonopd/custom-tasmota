@@ -17,7 +17,7 @@ jobs:
   tasmota:
     # Based on https://raw.githubusercontent.com/arendst/Tasmota/development/.github/workflows/Tasmota_build_master.yml
     runs-on: ubuntu-latest
-    continue-on-error: true
+    continue-on-error: false
     steps:
     - name: Pull Tasmota
       run: |
