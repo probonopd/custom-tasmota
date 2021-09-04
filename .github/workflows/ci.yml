@@ -30,6 +30,16 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -U platformio
+    - name: Customize Tasmota
+      run: |
+        cat > tasmota/user_config_override.h <<\EOF
+        #ifndef _USER_CONFIG_OVERRIDE_H_
+        #define _USER_CONFIG_OVERRIDE_H_
+        #define USE_DISCOVERY
+        #define MQTT_HOST_DISCOVERY
+        #define USE_PING
+        #endif  // _USER_CONFIG_OVERRIDE_H_
+        EOF
     - name: Run PlatformIO
       run: |
         ls /home/runner/work/custom-tasmota/custom-tasmota/platformio.ini
