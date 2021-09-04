@@ -19,10 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-    - name: Install dependencies
+    - name: Pull Tasmota
       run: |
-        git clone https://github.com/arendst/Tasmota/
-        cd Tasmota
+        git init
+        git remote add origin https://github.com/arendst/Tasmota/
+        git pull origin master
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v1
