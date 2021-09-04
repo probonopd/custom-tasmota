@@ -25,7 +25,6 @@ jobs:
         git remote add origin https://github.com/arendst/Tasmota/
         git pull origin development
         ls /home/runner/work/custom-tasmota/custom-tasmota/platformio.ini
-    - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v1
     - name: Install dependencies
