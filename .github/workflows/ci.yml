@@ -24,7 +24,7 @@ jobs:
         git init
         git remote add origin https://github.com/arendst/Tasmota/
         git pull origin development
-        ls
+        ls /home/runner/work/custom-tasmota/custom-tasmota/platformio.ini
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v1
@@ -33,6 +33,7 @@ jobs:
         pip install -U platformio
     - name: Run PlatformIO
       run: |
+        ls /home/runner/work/custom-tasmota/custom-tasmota/platformio.ini
         platformio run -e tasmota
     - uses: actions/upload-artifact@v2
       with:
