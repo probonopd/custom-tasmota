@@ -29,6 +29,13 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -U platformio
+    - name: Run PlatformIO for tasmota-minimal
+      run: |
+        platformio run -e tasmota-minimal
+        find ./build_output
+        mkdir -p ./out
+        mv ./build_output/firmware/tasmota-minimal.bin.gz out/
+        mv ./build_output/firmware/tasmota-minimal.bin out/
     - name: Customize Tasmota
       run: |
         cat > tasmota/user_config_override.h <<\EOF
