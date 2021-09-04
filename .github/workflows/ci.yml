@@ -52,6 +52,7 @@ jobs:
         mkdir -p ./out
         mv ./build_output/firmware/tasmota.bin.gz out/tasmota-advertise-ping-$(git rev-parse --short HEAD).bin.gz
         mv ./build_output/firmware/tasmota.bin out/tasmota-advertise-ping-$(git rev-parse --short HEAD).bin
+        mv ./tasmota/user_config_override.h out/tasmota-advertise-ping-user_config_override.h
     - name: Customize Tasmota for SK6812
       run: |
         cat > tasmota/user_config_override.h <<\EOF
@@ -70,6 +71,7 @@ jobs:
         mkdir -p ./out
         mv ./build_output/firmware/tasmota.bin.gz out/tasmota-sk6812-advertise-ping-$(git rev-parse --short HEAD).bin.gz
         mv ./build_output/firmware/tasmota.bin out/tasmota-sk6812-advertise-ping-$(git rev-parse --short HEAD).bin
+        mv ./tasmota/user_config_override.h out/tasmota-sk6812-advertise-ping-user_config_override.h
     - uses: actions/upload-artifact@v2
       with:
         name: tasmota
