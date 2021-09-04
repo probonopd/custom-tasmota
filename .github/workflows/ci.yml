@@ -23,7 +23,8 @@ jobs:
       run: |
         git init
         git remote add origin https://github.com/arendst/Tasmota/
-        git pull origin master
+        git pull origin development
+        ls
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v1
