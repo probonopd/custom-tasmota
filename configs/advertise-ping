@@ -1,0 +1,2 @@
+#define WEBSERVER_ADVERTISE
+#define USE_PING
