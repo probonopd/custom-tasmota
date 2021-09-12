@@ -36,42 +36,10 @@ jobs:
         mkdir -p ./out
         mv ./build_output/firmware/tasmota-minimal.bin.gz out/tasmota-minimal-$(git rev-parse --short HEAD).bin.gz
         mv ./build_output/firmware/tasmota-minimal.bin out/tasmota-minimal-$(git rev-parse --short HEAD).bin
-    - name: Customize Tasmota
+    - name: Run PlatformIO for each configuration
       run: |
-        cat > tasmota/user_config_override.h <<\EOF
-        #ifndef _USER_CONFIG_OVERRIDE_H_
-        #define _USER_CONFIG_OVERRIDE_H_
-        #define WEBSERVER_ADVERTISE
-        #define USE_PING
-        #endif  // _USER_CONFIG_OVERRIDE_H_
-        EOF
-    - name: Run PlatformIO
-      run: |
-        platformio run -e tasmota
-        find ./build_output
-        mkdir -p ./out
-        mv ./build_output/firmware/tasmota.bin.gz out/tasmota-advertise-ping-$(git rev-parse --short HEAD).bin.gz
-        mv ./build_output/firmware/tasmota.bin out/tasmota-advertise-ping-$(git rev-parse --short HEAD).bin
-        mv ./tasmota/user_config_override.h out/tasmota-advertise-ping-user_config_override.h
-    - name: Customize Tasmota for SK6812
-      run: |
-        cat > tasmota/user_config_override.h <<\EOF
-        #ifndef _USER_CONFIG_OVERRIDE_H_
-        #define _USER_CONFIG_OVERRIDE_H_
-        #define WEBSERVER_ADVERTISE
-        #define USE_PING
-        #define USE_WS2812_HARDWARE  NEO_HW_SK6812     
-        #define USE_WS2812_CTYPE     NEO_GRBW           // Color type (NEO_RGB, NEO_GRB, NEO_BRG, NEO_RBG, NEO_RGBW, NEO_GRBW)
-        #endif  // _USER_CONFIG_OVERRIDE_H_
-        EOF
-    - name: Run PlatformIO for SK6812
-      run: |
-        platformio run -e tasmota
-        find ./build_output
-        mkdir -p ./out
-        mv ./build_output/firmware/tasmota.bin.gz out/tasmota-sk6812-advertise-ping-$(git rev-parse --short HEAD).bin.gz
-        mv ./build_output/firmware/tasmota.bin out/tasmota-sk6812-advertise-ping-$(git rev-parse --short HEAD).bin
-        mv ./tasmota/user_config_override.h out/tasmota-sk6812-advertise-ping-user_config_override.h
+        git clone https://github.com/probonopd/custom-tasmota/
+        sh -ex custom-tasmota/build.sh
     - uses: actions/upload-artifact@v2
       with:
         name: tasmota
