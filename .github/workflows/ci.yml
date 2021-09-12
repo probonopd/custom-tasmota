@@ -36,9 +36,11 @@ jobs:
         mkdir -p ./out
         mv ./build_output/firmware/tasmota-minimal.bin.gz out/tasmota-minimal-$(git rev-parse --short HEAD).bin.gz
         mv ./build_output/firmware/tasmota-minimal.bin out/tasmota-minimal-$(git rev-parse --short HEAD).bin
+    - name: Inject slug/short variables
+      uses: rlespinasse/github-slug-action@v3.x
     - name: Run PlatformIO for each configuration
       run: |
-        git clone https://github.com/probonopd/custom-tasmota/
+        git clone https://github.com/$GITHUB_REPOSITORY_SLUG/
         sh -ex custom-tasmota/build.sh
     - uses: actions/upload-artifact@v2
       with:
