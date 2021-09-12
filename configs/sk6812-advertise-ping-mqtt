@@ -2,3 +2,6 @@
 #define USE_PING
 #define USE_WS2812_HARDWARE  NEO_HW_SK6812     
 #define USE_WS2812_CTYPE     NEO_GRBW           // Color type (NEO_RGB, NEO_GRB, NEO_BRG, NEO_RBG, NEO_RGBW, NEO_GRBW)
+#ifndef SUPPORT_MQTT_EVENT
+#define SUPPORT_MQTT_EVENT                      // Allow to subscribe to MQTT topics in rules
+#endif
