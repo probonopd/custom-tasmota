@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CONFIGS=$(find configs/ -type f -depth 1)
+CONFIGS=$(find configs/ -type f -maxdepth 1)
 for CONFIG in $CONFIGS ; do
   echo $CONFIG
   NAME=$(echo $CONFIG | cut -d '/' -f 2)
