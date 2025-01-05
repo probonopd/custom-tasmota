@@ -29,11 +29,12 @@ jobs:
       - name: Build Tasmota
         run: |
           cd Tasmota
-          platformio run -e tasmota
+          platformio run -e esp32s2cdc # -e tasmota
+          mkdir -p ../out/
+          mv .pio/build/*/firmware.bin ../out/tasmota32s2cdc.bin
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: tasmota.bin
-          path: Tasmota/.pio/build/*/firmware.bin
+          path: out/*
           retention-days: 1
