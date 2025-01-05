@@ -28,11 +28,12 @@ jobs:
 
       - name: Build Tasmota
         run: |
+          cd Tasmota
           platformio run -e tasmota
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: tasmota.bin
-          path: .pio/build/*/firmware.bin
+          path: Tasmota/.pio/build/*/firmware.bin
           retention-days: 1
