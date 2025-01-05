@@ -1,5 +1,0 @@
-#define WEBSERVER_ADVERTISE
-#define USE_PING
-#ifndef SUPPORT_MQTT_EVENT
-#define SUPPORT_MQTT_EVENT                      // Allow to subscribe to MQTT topics in rules
-#endif
