@@ -1,0 +1,39 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install PlatformIO
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip3 install platformio
+
+      - name: Install dependencies
+        run: |
+          platformio lib install -f "https://github.com/arendst/Tasmota.git#main"
+
+      - name: Copy user_config_override.h
+        run: |
+          cp user_config_override.h .pio/libdeps/esp32dev/Tasmota/user_config_override.h
+
+      - name: Run headless builder
+        run: |
+          chmod +x headless-builder.sh
+          ./headless-builder.sh
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: tasmota.bin
+          path: .pio/build/esp32dev/firmware.bin
+          retention-days: 1
