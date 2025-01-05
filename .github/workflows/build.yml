@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          platformio lib install -f "https://github.com/arendst/Tasmota.git#main"
+          platformio lib install -f "https://github.com/arendst/Tasmota.git#v14.4.1"
 
       - name: Copy user_config_override.h
         run: |
