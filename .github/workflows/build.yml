@@ -24,16 +24,15 @@ jobs:
 
       - name: Copy user_config_override.h
         run: |
-          cp user_config_override.h .pio/libdeps/esp32dev/Tasmota/user_config_override.h
+          cp user_config_override.h tasmota/tasota/user_config_override.h
 
-      - name: Run headless builder
+      - name: Build Tasmota
         run: |
-          chmod +x headless-builder.sh
-          ./headless-builder.sh
+          platformio run -e tasmota -c tasmota.ino
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: tasmota.bin
-          path: .pio/build/esp32dev/firmware.bin
+          path: .pio/build/*/firmware.bin
           retention-days: 1
