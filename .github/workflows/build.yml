@@ -18,17 +18,17 @@ jobs:
           sudo apt-get install -y python3-pip
           pip3 install platformio
 
-      - name: Install dependencies
+      - name: Git clone Tasmota
         run: |
-          platformio lib install -f "https://github.com/arendst/Tasmota.git#v14.4.1"
+          git clone -b 'v14.4.1' --single-branch --depth 1 https://github.com/arendst/Tasmota
 
       - name: Copy user_config_override.h
         run: |
-          cp user_config_override.h tasmota/tasota/user_config_override.h
+          cp user_config_override.h Tasmota/tasmota/user_config_override.h
 
       - name: Build Tasmota
         run: |
-          platformio run -e tasmota -c tasmota.ino
+          platformio run -e tasmota
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
