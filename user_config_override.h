@@ -1,6 +1,10 @@
 #ifndef _USER_CONFIG_OVERRIDE_H_
 #define _USER_CONFIG_OVERRIDE_H_
 
+// QUESTION: How can we do without hardcoding this?
+#define TASMOTA_VARIANT "tasmota32s2cdc"
+#define OTA_URL "https://github.com/probonopd/custom-tasmota/releases/download/continuous" TASMOTA_VARIANT ".bin"
+
 // Enable RTC support; but DS1302 is not supported yet since it does not use I2C
 #ifndef USE_RTC_CHIPS
 #define USE_RTC_CHIPS
