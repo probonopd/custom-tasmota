@@ -1,7 +1,7 @@
 #ifndef _USER_CONFIG_OVERRIDE_H_
 #define _USER_CONFIG_OVERRIDE_H_
 
-// QUESTION: How can we do without hardcoding this?
+// QUESTION: How can we do without hardcoding this? use $PIOENV environment variable somehow?
 #define TASMOTA_VARIANT "tasmota32s2cdc"
 #define OTA_URL "https://github.com/probonopd/custom-tasmota/releases/download/continuous" TASMOTA_VARIANT ".bin"
 
