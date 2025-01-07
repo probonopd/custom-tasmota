@@ -27,7 +27,7 @@ jobs:
           sed -i -e 's|http://ota.tasmota.com/tasmota/release/|https://github.com/${GITHUB_REPOSITORY}/releases/download/continuous/|g' Tasmota/platformio_tasmota_env.ini
           sed -i -e 's|http://ota.tasmota.com/tasmota/release/|https://github.com/${GITHUB_REPOSITORY}/releases/download/continuous/|g' Tasmota/platformio_tasmota_env32.ini
           cp user_config_override.h Tasmota/tasmota/user_config_override.h
-          sed -i -e "s|Theo Arends</a>|Theo Arends</a><br><a href=\"https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}\">https://github.com/${GITHUB_REPOSITORY}</a>|g" Tasmota/tasmota/tasmota_xdrv_driver/xdrv_01_9_webserver.ino
+          sed -i -e "s|Theo Arends</a>|Theo Arends</a><br><a href=\'https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}\'>https://github.com/${GITHUB_REPOSITORY}</a>|g" Tasmota/tasmota/tasmota_xdrv_driver/xdrv_01_9_webserver.ino
           sed -i -e "s|https://bit.ly/tasmota|https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}|g" Tasmota/tasmota/tasmota_xdrv_driver/xdrv_01_9_webserver.ino
       - name: Build Tasmota variants
         run: |
