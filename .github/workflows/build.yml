@@ -25,8 +25,8 @@ jobs:
       - name: Copy user_config_override.h and change xdrv_01_9_webserver.ino
         run: |
           # FIXME: Find a proper way to change just the URL portion of the OTA_URL
-          sed -i -e 's|http://ota.tasmota.com/tasmota/release/|https://github.com/probonopd/custom-tasmota/releases/download/continuous/|g' platformio_tasmota_env.ini
-          sed -i -e 's|http://ota.tasmota.com/tasmota/release/|https://github.com/probonopd/custom-tasmota/releases/download/continuous/|g' platformio_tasmota_env32.ini
+          sed -i -e 's|http://ota.tasmota.com/tasmota/release/|https://github.com/probonopd/custom-tasmota/releases/download/continuous/|g' Tasmota/platformio_tasmota_env.ini
+          sed -i -e 's|http://ota.tasmota.com/tasmota/release/|https://github.com/probonopd/custom-tasmota/releases/download/continuous/|g' Tasmota/platformio_tasmota_env32.ini
           cp user_config_override.h Tasmota/tasmota/user_config_override.h
           sed -i -e "s|Theo Arends</a><br>|Theo Arends</a><br><a href=\"https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}\">https://github.com/${GITHUB_REPOSITORY}</a>|g" Tasmota/tasmota/tasmota_xdrv_driver/xdrv_01_9_webserver.ino
 
