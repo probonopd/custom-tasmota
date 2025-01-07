@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VARIANTS: '["tasmota", "tasmota-4M", "tasmota32s2cdc", "tasmota32s3"]'
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -30,12 +33,12 @@ jobs:
           sed -i -e "s|>Tasmota |>Based on Tasmota|g" Tasmota/tasmota/tasmota_xdrv_driver/xdrv_01_9_webserver.ino
           sed -i -e "s|Theo Arends</a>|Theo Arends</a><br><a href=\'https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}\'>https://github.com/${GITHUB_REPOSITORY}</a>|g" Tasmota/tasmota/tasmota_xdrv_driver/xdrv_01_9_webserver.ino
           sed -i -e "s|https://bit.ly/tasmota|https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}|g" Tasmota/tasmota/tasmota_xdrv_driver/xdrv_01_9_webserver.ino
+
       - name: Build Tasmota variants
         run: |
           cd Tasmota
-          variants=("tasmota" "tasmota-4M" "tasmota32s2cdc" "tasmota32s3") # tasmota32c2 no i2s?
           mkdir -p ../out/
-          for variant in "${variants[@]}"; do
+          for variant in $(echo $VARIANTS | jq -r '.[]'); do
             platformio run -e "$variant"
             mv .pio/build/*/firmware.bin "../out/${variant}.bin"
           done
@@ -63,7 +66,7 @@ jobs:
 
       - name: Upload artifacts to release
         run: |
-          for variant in tasmota tasmota-4M tasmota32s2cdc tasmota32s3; do
+          for variant in $(echo $VARIANTS | jq -r '.[]'); do
             curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
               -H "Content-Type: application/octet-stream" \
               --data-binary @"out/${variant}.bin" \
