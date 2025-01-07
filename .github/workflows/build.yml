@@ -32,7 +32,7 @@ jobs:
       - name: Build Tasmota variants
         run: |
           cd Tasmota
-          variants=("tasmota" "tasmota-4M" "tasmota32c2" "tasmota32s2cdc" "tasmota32s3")
+          variants=("tasmota" "tasmota-4M" "tasmota32s2cdc" "tasmota32s3") # tasmota32c2 no i2s?
           mkdir -p ../out/
           for variant in "${variants[@]}"; do
             platformio run -e "$variant"
