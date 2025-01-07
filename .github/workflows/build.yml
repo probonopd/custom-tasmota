@@ -57,7 +57,7 @@ jobs:
         id: create_release
         run: |
           response=$(curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -d '{"tag_name": "continuous", "name": "Continuous Release", "body": "New build of Tasmota variants."}' \
+            -d '{"tag_name": "continuous", "name": "Continuous Release", "body": "Customized builds of Tasmota"}' \
             "https://api.github.com/repos/${{ github.repository }}/releases")
           echo "release_id=$(echo $response | jq '.id')" >> $GITHUB_ENV
 
