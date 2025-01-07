@@ -32,8 +32,7 @@ jobs:
           cp user_config_override.h Tasmota/tasmota/user_config_override.h
           sed -i -e "s|>Tasmota |>Based on Tasmota|g" Tasmota/tasmota/tasmota_xdrv_driver/xdrv_01_9_webserver.ino
           sed -i -e "s|Theo Arends</a>|Theo Arends</a><br><a href=\'https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}\'>https://github.com/${GITHUB_REPOSITORY}</a>|g" Tasmota/tasmota/tasmota_xdrv_driver/xdrv_01_9_webserver.ino
-          sed -i -e "s|https://bit.ly/tasmota|https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}|g" Tasmota/tasmota/tasmota_xdrv_driver/xdrv_01_9_webserver.ino
-          sed -i -e 's|verdana,sans-serif|helvetica,sans-serif|g' Tasmota/tasmota/html_uncompressed/HTTP_HEAD_STYLE1.h # Proper font
+          sed -i -e 's|verdana,sans-serif|helvetica,sans-serif|g' Tasmota/tasmota/html_uncompressed/HTTP_HEAD_STYLE1.h # Proper font; FIXME: Does not work?
       - name: Build Tasmota variants
         run: |
           cd Tasmota
