@@ -1,9 +1,10 @@
 #ifndef _USER_CONFIG_OVERRIDE_H_
 #define _USER_CONFIG_OVERRIDE_H_
 
-// QUESTION: How can we do without hardcoding this? use $PIOENV environment variable somehow?
-#define TASMOTA_VARIANT "tasmota32s2cdc"
-#define OTA_URL "https://github.com/probonopd/custom-tasmota/releases/download/continuous" TASMOTA_VARIANT ".bin"
+// Extract the filename from OTA_URL defined in platformio_tasmota.ini/platformio_tasmota32.ini
+#define GET_FILENAME(url) (strrchr(url, '/') ? strrchr(url, '/') + 1 : url)
+#define OTA_FILENAME GET_FILENAME(OTA_URL)
+#define OTA_URL "https://github.com/probonopd/custom-tasmota/releases/download/continuous/" OTA_FILENAME
 
 // Enable RTC support; but DS1302 is not supported yet since it does not use I2C
 #ifndef USE_RTC_CHIPS
