@@ -40,7 +40,7 @@ jobs:
           for variant in $(echo $VARIANTS | jq -r '.[]'); do
             platformio run -e "$variant"
             mv .pio/build/*/firmware.bin "../out/${variant}.bin"
-            mv .pio/build/*/firmware.bin.gz "../out/${variant}.bin.gz"
+            gzip -c "../out/${variant}.bin" > "../out/${variant}.bin.gz"
           done
 
       - name: Check for existing release
