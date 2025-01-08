@@ -40,6 +40,7 @@ jobs:
           for variant in $(echo $VARIANTS | jq -r '.[]'); do
             platformio run -e "$variant"
             mv .pio/build/*/firmware.bin "../out/${variant}.bin"
+            mv .pio/build/*/firmware.bin.gz "../out/${variant}.bin.gz"
           done
 
       - name: Check for existing release
@@ -66,8 +67,10 @@ jobs:
       - name: Upload artifacts to release
         run: |
           for variant in $(echo $VARIANTS | jq -r '.[]'); do
-            curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              -H "Content-Type: application/octet-stream" \
-              --data-binary @"out/${variant}.bin" \
-              "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ env.release_id }}/assets?name=${variant}.bin"
+            for file_type in "bin" "bin.gz"; do
+              curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                -H "Content-Type: application/octet-stream" \
+                --data-binary @"out/${variant}.${file_type}" \
+                "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ env.release_id }}/assets?name=${variant}.${file_type}"
+            done
           done
