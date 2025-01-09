@@ -5,6 +5,11 @@
 // #define TASMOTA_VARIANT "tasmota32s2cdc"
 // #define OTA_URL "https://github.com/probonopd/custom-tasmota/releases/download/continuous" TASMOTA_VARIANT ".bin"
 
+// Disable webcam support and advanced display GUIs (seems to be in tasmota32s3-qio_opi by otherwise)
+#undef USE_WEBCAM
+#undef USE_LVGL
+#undef USE_LVGL_OPENHASP
+
 // Enable RTC support; but DS1302 is not supported yet since it does not use I2C
 #ifndef USE_RTC_CHIPS
 #define USE_RTC_CHIPS
