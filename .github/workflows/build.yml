@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      VARIANTS: '["tasmota", "tasmota-4M", "tasmota32s2cdc", "tasmota32s3"]'
+      VARIANTS: '["tasmota", "tasmota-4M", "tasmota32s2cdc", "tasmota32s3-qio_opi"]'
 
     steps:
       - name: Checkout code
