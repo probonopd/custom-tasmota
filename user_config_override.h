@@ -9,6 +9,7 @@
 #undef USE_WEBCAM
 #undef USE_LVGL
 #undef USE_LVGL_OPENHASP
+#undef FIRMWARE_LVGL
 
 // Enable RTC support; but DS1302 is not supported yet since it does not use I2C
 #ifndef USE_RTC_CHIPS
