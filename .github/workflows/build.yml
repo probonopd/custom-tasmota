@@ -23,12 +23,12 @@ jobs:
 
       - name: Git clone Tasmota
         run: |
-          git clone -b 'v14.4.1' --single-branch --depth 1 https://github.com/arendst/Tasmota
+          git clone --single-branch --depth 1 https://github.com/arendst/Tasmota # -b 'v14.4.1'
           # Patch for AAC support
-          wget https://patch-diff.githubusercontent.com/raw/arendst/Tasmota/pull/22787.diff
-          cd Tasmota/
+          # wget https://patch-diff.githubusercontent.com/raw/arendst/Tasmota/pull/22787.diff
+          # cd Tasmota/
           # patch -p 1 < ../22787.diff
-          cd -
+          # cd -
 
       - name: Copy user_config_override.h and change xdrv_01_9_webserver.ino
         run: |
