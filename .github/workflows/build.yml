@@ -40,8 +40,7 @@ jobs:
           # patch -p 1 < ../22787.diff
           # cd -
           # Patch to 10x the i2s buffer size to reduce buffer underruns on webradio
-          sed -i 's/^constexpr int preallocateBufferSize =.*/constexpr int preallocateBufferSize = 16*1024*10; \/* probono: 10x the default buffer size *\//' Tasmota/tasmota/tasmota_xdrv_driver xdrv_42_0_i2s_audio_idf51.ino
-
+          sed -i 's/^constexpr int preallocateBufferSize =.*/constexpr int preallocateBufferSize = 16*1024*10; \/* probono: 10x the default buffer size *\//' Tasmota/tasmota/tasmota_xdrv_driver/xdrv_42_0_i2s_audio_idf51.ino
       - name: Copy user_config_override.h and change xdrv_01_9_webserver.ino
         run: |
           sed -i -e 's|http://ota.tasmota.com/tasmota/release/|https://github.com/${GITHUB_REPOSITORY}/releases/download/continuous/|g' Tasmota/platformio_tasmota_env.ini
