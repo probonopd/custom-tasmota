@@ -1,4 +1,4 @@
-# Custom Tasmota
+# Custom Tasmota [![Build Status](../../actions/workflows/build.yml/badge.svg)](../../actions/workflows/build.yml)
 
 Builds https://github.com/arendst/Tasmota but with different compile-time configurations and hosts the builds on GitHub Releases so that OTA can be performed from there.
 
