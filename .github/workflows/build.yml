@@ -27,7 +27,7 @@ jobs:
           # Patch for AAC support
           wget https://patch-diff.githubusercontent.com/raw/arendst/Tasmota/pull/22787.diff
           cd Tasmota/
-          patch -p 1 < ../22787.diff
+          # patch -p 1 < ../22787.diff
           cd -
 
       - name: Copy user_config_override.h and change xdrv_01_9_webserver.ino
