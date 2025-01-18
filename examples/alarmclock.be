@@ -23,11 +23,11 @@ class BedOccupancySensor
     self.last_number = 0
     self.threshold = 0
     self.initial_number = 0
-    self.hysteresis = 0.01  # 1% hysteresis
+    self.hysteresis = 0.02  # 2% hysteresis
     self.debounce_count = 0
     self.debounce_threshold = 2  # Number of consecutive readings required to change state
     self.consecutive_readings = 0
-    self.percentage = 0.05  # Default to 5%
+    self.percentage = 0.07  # Default to 7%
     tasmota.cmd("TouchCal 1")
     # Wait for before calibration
     tasmota.delay(500)
