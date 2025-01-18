@@ -44,6 +44,11 @@
 #define USE_I2S_ALL
 #endif
 
+// HLK-LD2410 human presence sensor
+#ifndef USE_LD2410
+#define USE_LD2410
+#endif
+
 // Enable mDNS support by default
 // so that one doesn't have to manually enable it in the console after flashing using
 // SetOption55 1
