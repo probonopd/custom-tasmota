@@ -56,7 +56,7 @@ jobs:
           for variant in $(echo $VARIANTS | jq -r '.[]'); do
             platformio run -e "$variant"
             mv .pio/build/*/firmware.bin "../out/${variant}.bin"
-            mv .pio/build/*/firmware.factory.bin "../out/${variant}.factory.bin"
+            mv .pio/build/*/firmware.factory.bin "../out/${variant}.factory.bin" || true # Only exists for esp32
           done
 
       - name: Check for existing release
