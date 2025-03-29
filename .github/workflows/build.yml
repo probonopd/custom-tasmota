@@ -80,13 +80,11 @@ jobs:
             "https://api.github.com/repos/${{ github.repository }}/releases")
           echo "release_id=$(echo $response | jq '.id')" >> $GITHUB_ENV
 
-      - name: Upload artifacts to release
+      - name: Upload all files in out/ directory
         run: |
-          for variant in $(echo $VARIANTS | jq -r '.[]'); do
-            for file_type in "bin" ; do
-              curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                -H "Content-Type: application/octet-stream" \
-                --data-binary @"out/${variant}.${file_type}" \
-                "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ env.release_id }}/assets?name=${variant}.${file_type}"
-            done
+          for file in out/*; do
+            curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Content-Type: application/octet-stream" \
+              --data-binary @"$file" \
+              "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ env.release_id }}/assets?name=$(basename $file)"
           done
